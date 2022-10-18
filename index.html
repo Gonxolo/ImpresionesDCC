@@ -11,11 +11,8 @@
 <body>
 <div class="d-flex flex-column min-vh-100 p-2 justify-content-center align-items-center">
 <div class="container" style="background-color: rgba(0, 0, 0, 0.1)">
-
     <label for="nombre-archivo-pdf">Nombre del archivo en formato PDF</label>
     <input id="nombre-archivo-pdf" type="text" placeholder="filename.pdf" value="filename.pdf">
-
-    <br><br>
 
     <label for="nombre-archivo-ps">Nombre del archivo PS de salida (puedes dejar el nombre por defecto)</label>
     <input id="nombre-archivo-ps" type="text" placeholder="out.ps" value="out.ps">
@@ -111,12 +108,17 @@
             nuevoComando += `${nombreArchivoPS}|lpr`;
 
         } else {
-            nuevoComando += `lpr ${nombreArchivoPS}`;
+
+            nuevoComando += "lpr ";
+
+            if (document.getElementById("lugar-impresion").value === "salita"){
+                nuevoComando += "-P hp335 ";
+            }
+
+            nuevoComando += `${nombreArchivoPS}`;
         }
 
-        if (document.getElementById("lugar-impresion").value === "salita"){
-            nuevoComando += " -P hp335";
-        }
+
 
         document.getElementById("comando-consola").innerText = nuevoComando;
 
