@@ -14,6 +14,8 @@
     <label for="nombre-archivo-pdf">Nombre del archivo en formato PDF</label>
     <input id="nombre-archivo-pdf" type="text" placeholder="filename.pdf" value="filename.pdf">
 
+    <br><br>
+
     <label for="nombre-archivo-ps">Nombre del archivo PS de salida (puedes dejar el nombre por defecto)</label>
     <input id="nombre-archivo-ps" type="text" placeholder="out.ps" value="out.ps">
 
@@ -31,10 +33,9 @@
         <option value="corto">Corto</option>
     </select>
 
-    </div>
-
     <br><br>
 
+    </div>
 
     <label for="lugar-impresion">Lugar de impresión</label>
     <select id="lugar-impresion">
@@ -48,20 +49,26 @@
 
     <br><br>
 
-    <div id="display-comando" hidden>
-        Comando (copia este en tu terminal de anakena):
+    <div id="display-comando"  hidden>
+        Comando (copia esto en tu terminal de anakena):
+        
+        <br>
+
+        <div id="confirmacion-copiado" class="alert alert-success" hidden>
+            Comando copiado!
+        </div>
+        
+        <div class="bg-light">
+            <code id="comando-consola"></code>
+        </div>
+
+        <br>
+
+        <button id="copy-button" onclick="copyToClipboard()" hidden>Copiar comando</button>
+        
+        <br><br>
     </div>
-
-    <div id="confirmacion-copiado" class="alert alert-success" hidden>
-        Comando copiado!
-    </div>
-
-    <code id="comando-consola"></code>
-
-    <br><br>
-    <button id="copy-button" onclick="copyToClipboard()" hidden>Copiar comando</button>
-    <br><br>
-
+    
     <footer class="bg-light text-center text-lg-start">
         <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
         Toda la informacion en esta pagina fue obtenida de
