@@ -3,79 +3,115 @@
 <head>
     <meta charset="UTF-8">
     <title>Impresiones DCC</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+            integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+            crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+            crossorigin="anonymous"></script>
 </head>
 <body>
-<div class="d-flex flex-column min-vh-100 p-2 justify-content-center align-items-center">
-<div class="container" style="background-color: rgba(0, 0, 0, 0.1)">
-    <label for="nombre-archivo-pdf">Nombre del archivo en formato PDF</label>
-    <input id="nombre-archivo-pdf" type="text" placeholder="filename.pdf" value="filename.pdf">
+<div class="d-flex flex-column min-vh-100 justify-content-center align-items-center">
+    <div class="rounded container p-4" style="background-color: rgba(0, 0, 0, 0.1)">
 
-    <br><br>
+        <div class="mb-3">
+            <label class="form-label" for="nombre-archivo-pdf">Nombre del archivo en formato PDF</label>
+            <input class="form-control" id="nombre-archivo-pdf" type="text" placeholder="filename.pdf"
+                   value="filename.pdf">
+        </div>
 
-    <label for="nombre-archivo-ps">Nombre del archivo PS de salida (puedes dejar el nombre por defecto)</label>
-    <input id="nombre-archivo-ps" type="text" placeholder="out.ps" value="out.ps">
 
-    <br><br>
-
-    <label for="impresion-doble-cara">Impresión a doble cara</label>
-    <input id="impresion-doble-cara" type="checkbox" onchange="checkBorde()" checked>
-
-    <br><br>
-
-    <div id="esconder-borde-impresion">
-    <label for="borde-impresion">Impresión por borde</label>
-    <select id="borde-impresion">
-        <option value="largo">Largo</option>
-        <option value="corto">Corto</option>
-    </select>
-
-    <br><br>
-
-    </div>
-
-    <label for="lugar-impresion">Lugar de impresión</label>
-    <select id="lugar-impresion">
-        <option value="toqui">Toqui</option>
-        <option value="salita">Salita</option>
-    </select>
-
-    <br><br>
-
-    <button onclick="rehacerComando()">Generar Comando</button>
-
-    <br><br>
-
-    <div id="display-comando"  hidden>
-        Comando (copia esto en tu terminal de anakena):
-        
         <br>
 
-        <div id="confirmacion-copiado" class="alert alert-success" hidden>
-            Comando copiado!
+        <div class="mb-3">
+            <label class="form-label" for="nombre-archivo-ps">Nombre del archivo PS de salida (puedes dejar el nombre
+                por defecto)</label>
+            <input class="form-control" id="nombre-archivo-ps" type="text" placeholder="out.ps" value="out.ps">
         </div>
-        
-        <div class="bg-light">
-            <code id="comando-consola"></code>
+
+
+        <br>
+
+        <div class="form-check">
+            <input class="form-check-input" id="impresion-doble-cara" type="checkbox" onchange="checkBorde()" checked>
+            <label class="form-ckeck-label" for="impresion-doble-cara">
+                Impresión a doble cara
+            </label>
         </div>
 
         <br>
 
-        <button id="copy-button" onclick="copyToClipboard()" hidden>Copiar comando</button>
-        
+        <div id="esconder-borde-impresion">
+            <label class="form-label" for="borde-impresion">Impresión por borde</label>
+            <select class="form-select" id="borde-impresion">
+                <option value="largo">Largo</option>
+                <option value="corto">Corto</option>
+            </select>
+        </div>
+
+        <br>
+
+        <label for="lugar-impresion">Lugar de impresión</label>
+        <select id="lugar-impresion">
+            <option value="toqui">Toqui</option>
+            <option value="salita">Salita</option>
+        </select>
+
         <br><br>
-    </div>
-    
-    <footer class="bg-light text-center text-lg-start">
-        <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
-        Toda la informacion en esta pagina fue obtenida de
-        <a class="fw-bold" href="https://faq.cadcc.cl/es/latest/FAQ%20Impresoras/">Impresiones - FAQ CaDCC</a>
+
+        <div class="container text-center">
+            <button type="button" class="btn btn-primary btn-lg" onclick="rehacerComando()">Generar Comando
+            </button>
         </div>
-    </footer>
-</div>
+
+        <br>
+
+        <div class="rounded bg-light p-3" id="display-comando" hidden>
+            <p>Comando (copia esto en tu terminal de anakena):</p>
+
+
+            <div id="confirmacion-copiado" class="alert alert-success" hidden>
+                Comando copiado!
+            </div>
+
+            <div class="rounded bg-dark p-3">
+                <strong>
+                    <code style="color: rgb(244,132,255)" id="comando-consola"></code>
+                </strong>
+            </div>
+
+            <br>
+
+            <div class="container text-center">
+                <button type="button" class="btn btn-info btn-lg" id="copy-button"
+                        onclick="copyToClipboard()" hidden>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                         class="bi bi-clipboard" viewBox="0 0 16 16">
+                        <path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z"/>
+                        <path d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z"/>
+                    </svg>
+                    Copiar comando
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="rounded container bg-light text-center p-0">
+        <div class="rounded text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+            Toda la informacion en esta pagina fue obtenida de
+            <a class="fw-bold" href="https://faq.cadcc.cl/es/latest/FAQ%20Impresoras/">Impresiones - FAQ CaDCC</a>
+        </div>
+    </div>
+    <div class="rounded container bg-light text-center p-0">
+        <div class="rounded text-center p-3" style="color: rgb(141,141,141); background-color: rgba(220,220,220,0.2);">
+            Cualquier problema, sugerencia o comentario puedes escribir a
+            <a style="color: rgb(135,184,204)" href="mailto:galarcon@dcc.uchile.cl" target="_blank" class="fw-bold">galarcon@dcc.uchile.cl</a>
+        </div>
+    </div>
 </div>
 
 </body>
