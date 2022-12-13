@@ -31,14 +31,14 @@ function rehacerComando(){
         nuevoComando += `${nombreArchivoPS}|lpr`;
 
         if (document.getElementById("lugar-impresion").value === "salita") {
-            nuevoComando += " -P hp335"
+            nuevoComando += " -P hp-335"
         }
     }
     else {
         nuevoComando += "lpr ";
 
         if (document.getElementById("lugar-impresion").value === "salita"){
-            nuevoComando += "-P hp335 ";
+            nuevoComando += "-P hp-335 ";
         }
 
         nuevoComando += `${nombreArchivoPS}`;
