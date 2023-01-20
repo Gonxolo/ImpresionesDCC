@@ -14,73 +14,90 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
             integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
             crossorigin="anonymous"></script>
+    <style>
+        body {
+            background-color: #222;
+        }
+
+        code {
+            color: rgb(244,132,255);
+        }
+
+        footer {
+            color: #fff;
+            margin-top: 2rem;
+        }
+
+        footer hr {
+            border-color: lightgray;
+            width: 20vw;
+        }
+
+        footer a {
+            color: rgb(135,184,204);
+        }
+
+        .main-form {
+            background-color: #fff;
+        }
+
+        .double-print {
+            background-color: rgba(0, 0, 0, 0.05);
+        }
+
+        .python-script {
+            color: salmon;
+        }
+    </style>
 </head>
 <body>
-<div class="d-flex flex-column min-vh-100 justify-content-center align-items-center">
+<div class="d-flex flex-column min-vh-100 justify-content-center align-items-center mt-md-4">
 
-    <div class="rounded container" style="background-color: salmon">
-    
-        <p>Script para asistir en la impresion desde la terminal de anakena</p>
-    
-        <a href="printer.py" class="button" download>
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-download" viewBox="0 0 16 16">
-                <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"/>
-                <path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z"/>
-            </svg>
-            Descargar archivo
-        </a>
-   
-     </div>
+    <div class="rounded-top container p-4 main-form">
 
-    <div class="rounded container p-4" style="background-color: rgba(0, 0, 0, 0.1)">
+        <h1 class="text-center">Impresiones DCC</h1>
+        <p class="text-center">El script generado te ayudará a imprimir tus documentos en la terminal de anakena como todo un juaker.</p>
 
-        <div class="mb-3">
-            <label class="form-label" for="nombre-archivo-pdf">Nombre del archivo en formato PDF</label>
-            <input class="form-control" id="nombre-archivo-pdf" type="text" placeholder="filename.pdf"
-                   value="filename.pdf">
+        <div class="row align-items-end">
+            <div class="form-group col-md-4">
+                <label class="form-label" for="nombre-archivo-pdf">Nombre del archivo en formato PDF</label>
+                <input class="form-control" id="nombre-archivo-pdf" type="text" placeholder="filename.pdf" value="filename.pdf">
+            </div>
+            <div class="form-group col-md-4">
+                <label class="form-label" for="nombre-archivo-ps">Nombre del archivo PS de salida (puedes dejar el nombre
+                    por defecto)</label>
+                <input class="form-control" id="nombre-archivo-ps" type="text" placeholder="out.ps" value="out.ps">
+            </div>
+            <div class="form-group col-md-4">
+                <label for="lugar-impresion">Lugar de impresión</label>
+                <select class="form-control" id="lugar-impresion">
+                    <option value="toqui">Toqui</option>
+                    <option value="salita"><i class="fa-solid fa-users"></i>Salita</option>
+                </select>
+            </div>
         </div>
 
-
-        <br>
-
-        <div class="mb-3">
-            <label class="form-label" for="nombre-archivo-ps">Nombre del archivo PS de salida (puedes dejar el nombre
-                por defecto)</label>
-            <input class="form-control" id="nombre-archivo-ps" type="text" placeholder="out.ps" value="out.ps">
+        <div class="row pt-2 pb-2 rounded double-print">
+            <div class="form-group col-md-12">
+                <div class="custom-control custom-switch">
+                    <input class="custom-control-input" id="impresion-doble-cara" type="checkbox" onchange="checkBorde()" checked>
+                    <label class="custom-control-label" for="impresion-doble-cara">
+                        Imprimir a doble cara
+                    </label>
+                </div>
+            </div>
+            <div class="form-group col-md-12" id="esconder-borde-impresion" hidden>
+                <label class="form-label" for="borde-impresion">Impresión por borde</label>
+                <select class="form-control" id="borde-impresion">
+                    <option value="largo">Largo</option>
+                    <option value="corto">Corto</option>
+                </select>
+            </div>
         </div>
 
-
-        <br>
-
-        <div class="form-check">
-            <input class="form-check-input" id="impresion-doble-cara" type="checkbox" onchange="checkBorde()" checked>
-            <label class="form-ckeck-label" for="impresion-doble-cara">
-                Impresión a doble cara
-            </label>
-        </div>
-
-        <br>
-
-        <div id="esconder-borde-impresion">
-            <label class="form-label" for="borde-impresion">Impresión por borde</label>
-            <select class="form-select" id="borde-impresion">
-                <option value="largo">Largo</option>
-                <option value="corto">Corto</option>
-            </select>
-        </div>
-
-        <br>
-
-        <label for="lugar-impresion">Lugar de impresión</label>
-        <select id="lugar-impresion">
-            <option value="toqui">Toqui</option>
-            <option value="salita">Salita</option>
-        </select>
-
-        <br><br>
-
-        <div class="container text-center">
-            <button type="button" class="btn btn-primary btn-lg" onclick="rehacerComando()">Generar Comando
+        <div class="d-flex mt-4 justify-content-center">
+            <button type="button" class="btn btn-primary btn-lg" onclick="rehacerComando()">
+                Generar Comando
             </button>
         </div>
 
@@ -96,9 +113,11 @@
 
             <div class="rounded bg-dark p-3">
                 <strong>
-                    <code style="color: rgb(244,132,255)" id="comando-consola"></code>
+                    <code id="comando-consola"></code>
                 </strong>
             </div>
+            <i>Recuerda que el pdf debe encontrarse en tu cuenta de Anakena para poder imprimirlo.</i>
+            <!-- Sugerencia de TODO: indicar cómo usar scp por consola o Filezilla/WinSCP por GUI -->
 
             <br>
 
@@ -115,20 +134,30 @@
             </div>
         </div>
     </div>
-    <div class="rounded container bg-light text-center p-0">
-        <div class="rounded text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
-            Toda la informacion en esta pagina fue obtenida de
-            <a class="fw-bold" href="https://faq.cadcc.cl/es/latest/FAQ%20Impresoras/">Impresiones - FAQ CaDCC</a>
+    <div class="rounded-bottom container bg-dark python-script p-4">
+    
+        <h3 class="text-center">¡Hazlo con Python!</h3>
+        <p class="text-center">También puedes descargar el script de python y ejecutarlo desde tu consola en anakena.</p> 
+        <div class="text-center">        
+            <a href="printer.py" class="button btn btn-outline-light" download>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-download" viewBox="0 0 16 16">
+                    <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"/>
+                    <path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z"/>
+                </svg>
+                Descargar Script
+            </a>
         </div>
-    </div>
-    <div class="rounded container bg-light text-center p-0">
-        <div class="rounded text-center p-3" style="color: rgb(141,141,141); background-color: rgba(220,220,220,0.2);">
-            Cualquier problema, sugerencia o comentario puedes escribir a
-            <a style="color: rgb(135,184,204)" href="mailto:galarcon@dcc.uchile.cl" target="_blank" class="fw-bold">galarcon@dcc.uchile.cl</a>
-        </div>
+   
     </div>
 </div>
-
+<footer class="container-fluid bg-dark text-center p-3">
+    <div>
+        Toda la informacion en esta pagina fue obtenida de
+        <a class="fw-bold" href="https://faq.cadcc.cl/es/latest/FAQ%20Impresoras/">Impresiones - FAQ CaDCC</a>
+    </div>
+    <hr />
+    Cualquier problema, sugerencia o comentario puedes escribir a
+    <a href="mailto:galarcon@dcc.uchile.cl" target="_blank" class="fw-bold">galarcon@dcc.uchile.cl</a>
 </body>
 
 <script src="index.js"></script>
