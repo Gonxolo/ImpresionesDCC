@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8">  
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Impresiones DCC</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -37,8 +38,20 @@
             color: rgb(135,184,204);
         }
 
+        .main-container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin-top: 2rem;
+        }
+
         .main-form {
             background-color: #fff;
+        }
+
+        .main-form h1 {
+            color: #1b70f8;
         }
 
         .double-print {
@@ -48,10 +61,44 @@
         .python-script {
             color: salmon;
         }
+
+        .command-box {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: stretch;
+            align-content: center;
+        }
+
+        .command-box .command-content {
+            min-width: 80%;
+            max-width: 95%;
+            padding: 15px;
+            border-radius: 10px 0 0 10px;
+        }
+
+        .command-box .copy-button {
+            width:100px;
+            background-color: #17a2b8;
+            border-radius: 0 10px 10px 0;
+        }
+
+        .command-box .copy-button button {
+            border-radius: 0 10px 10px 0;
+        }
+
+        @media screen and (max-width: 768px) {
+            footer {
+                margin-top: 1rem;
+            }
+            .main-container {
+                margin-top: 0;
+            }
+        }
     </style>
 </head>
 <body>
-<div class="d-flex flex-column min-vh-100 justify-content-center align-items-center mt-md-4">
+<div class="d-flex flex-column min-vh-100 justify-content-center align-items-center">
 
     <div class="rounded-top container p-4 main-form">
 
@@ -80,7 +127,7 @@
         <div class="row pt-2 pb-2 rounded double-print">
             <div class="form-group col-md-12">
                 <div class="custom-control custom-switch">
-                    <input class="custom-control-input" id="impresion-doble-cara" type="checkbox" onchange="checkBorde()" checked>
+                    <input class="custom-control-input" id="impresion-doble-cara" type="checkbox" onchange="checkBorde()">
                     <label class="custom-control-label" for="impresion-doble-cara">
                         Imprimir a doble cara
                     </label>
@@ -104,34 +151,31 @@
         <br>
 
         <div class="rounded bg-light p-3" id="display-comando" hidden>
-            <p>Comando (copia esto en tu terminal de anakena):</p>
+            <p>Copia esto en tu terminal de anakena:</p>
 
 
             <div id="confirmacion-copiado" class="alert alert-success" hidden>
                 Comando copiado!
             </div>
 
-            <div class="rounded bg-dark p-3">
-                <strong>
+            <div class="command-box">
+                <div class="command-content bg-dark">
                     <code id="comando-consola"></code>
-                </strong>
-            </div>
-            <i>Recuerda que el pdf debe encontrarse en tu cuenta de Anakena para poder imprimirlo.</i>
-            <!-- Sugerencia de TODO: indicar cómo usar scp por consola o Filezilla/WinSCP por GUI -->
-
-            <br>
-
-            <div class="container text-center">
-                <button type="button" class="btn btn-info btn-lg" id="copy-button"
+                </div>
+                <div class="copy-button">
+                    <button type="button" class="btn btn-info btn-sm h-100 w-100" id="copy-button"
                         onclick="copyToClipboard()" hidden>
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                          class="bi bi-clipboard" viewBox="0 0 16 16">
                         <path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z"/>
                         <path d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z"/>
                     </svg>
-                    Copiar comando
+                    Copiar
                 </button>
+                </div>
             </div>
+            <i>Recuerda que el pdf debe encontrarse en tu cuenta de Anakena para poder imprimirlo.</i>
+            <!-- Sugerencia de TODO: indicar cómo usar scp por consola o Filezilla/WinSCP por GUI -->
         </div>
     </div>
     <div class="rounded-bottom container bg-dark python-script p-4">
