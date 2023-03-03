@@ -195,7 +195,7 @@ while [[ "$not_valid" = true ]]; do
         1)
             not_valid=false
             echo "Ejecutando el comando..."
-            $comando
+            eval $comando
             ;;
         2)
             not_valid=false
